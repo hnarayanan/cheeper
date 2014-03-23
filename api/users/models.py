@@ -12,4 +12,10 @@ class User(AbstractEmailUser):
     name = models.CharField(max_length=200)
     handle = models.CharField(max_length=25)
     thumbnail = models.ImageField(upload_to='thumbnails/')
-    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
+    is_following = models.ManyToManyField('self', through='FollowRelationship' , symmetrical=False, related_name='has_followers', null=True, blank=True)
+
+
+class FollowRelationship(TimeStampedModel):
+
+    followed = models.ForeignKey(User, related_name='follower_user')
+    follower = models.ForeignKey(User, related_name='followed_user')
