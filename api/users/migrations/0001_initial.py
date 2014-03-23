@@ -6,7 +6,6 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '__first__'),
     ]
 
     operations = [
@@ -23,7 +22,7 @@ class Migration(migrations.Migration):
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name=u'date joined')),
                 ('name', models.CharField(max_length=200)),
                 ('handle', models.CharField(max_length=25)),
-                ('thumbnail', models.ImageField(upload_to='thumbnails/')),
+                ('thumbnail', models.ImageField(default='', upload_to='thumbnails/', blank=True)),
                 ('groups', models.ManyToManyField(to='auth.Group', verbose_name=u'groups', blank=True)),
                 ('user_permissions', models.ManyToManyField(to='auth.Permission', verbose_name=u'user permissions', blank=True)),
             ],
