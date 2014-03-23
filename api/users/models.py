@@ -11,11 +11,16 @@ class User(AbstractEmailUser):
 
     name = models.CharField(max_length=200)
     handle = models.CharField(max_length=25)
-    thumbnail = models.ImageField(upload_to='thumbnails/')
-    is_following = models.ManyToManyField('self', through='FollowRelationship' , symmetrical=False, related_name='has_followers', null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='thumbnails/', blank=True, default='')
+    is_following = models.ManyToManyField('self', related_name='has_followers',
+                                          through='FollowRelationship',
+                                          symmetrical=False, blank=True, null=True)
 
 
 class FollowRelationship(TimeStampedModel):
+    """
+    A model to hold follower-followed relationships.
+    """
 
-    followed = models.ForeignKey(User, related_name='follower_user')
-    follower = models.ForeignKey(User, related_name='followed_user')
+    followed = models.ForeignKey(User, related_name='followed_user')
+    follower = models.ForeignKey(User, related_name='follower_user')
