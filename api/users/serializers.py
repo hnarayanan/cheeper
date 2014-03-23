@@ -6,4 +6,7 @@ from .models import User
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'name', 'handle', 'thumbnail')
+        cheeps = serializers.RelatedField(many=True)
+        is_following = serializers.RelatedField(many=True)
+        has_followers = serializers.RelatedField(many=True)
+        fields = ('url', 'name', 'handle', 'thumbnail', 'cheeps', 'is_following', 'has_followers')
