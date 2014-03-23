@@ -7,8 +7,8 @@ node_modules
 dist
 .tmp
 .sass-cache
+data/db.sqlite3
+media
 app/bower_components
-api/data/db.sqlite3
-api/media
 
 /venv
