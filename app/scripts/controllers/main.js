@@ -8,3 +8,4 @@ angular.module('cheeperApp')
       }).
       error(function(data, status, headers, config) {
     });
+});
