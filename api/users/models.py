@@ -15,5 +15,10 @@ class User(AbstractEmailUser):
     is_following = models.ManyToManyField('self', related_name='has_followers',
                                           symmetrical=False, blank=True, null=True)
 
+    def thumbnail_url(self):
+        if self.thumbnail:
+            return 'http://localhost:8000' + self.thumbnail.url
+        return ''
+
     def __unicode__(self):
         return '%s' % self.name
