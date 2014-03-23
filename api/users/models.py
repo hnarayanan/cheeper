@@ -17,15 +17,3 @@ class User(AbstractEmailUser):
 
     def __unicode__(self):
         return '%s' % self.name
-
-
-# class FollowRelationship(TimeStampedModel):
-#     """
-#     A model to hold follower-followed relationships.
-#     """
-
-#     followed = models.ForeignKey(User, related_name='followed_user')
-#     follower = models.ForeignKey(User, related_name='follower_user')
-
-#     def __unicode__(self):
-#         return '%s follows %s' % (self.follower, self.followed)
