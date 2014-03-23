@@ -4,6 +4,7 @@ from .models import User
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = User
         cheeps = serializers.RelatedField(many=True)
