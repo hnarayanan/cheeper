@@ -12,3 +12,6 @@ class Cheep(TimeStampedModel):
 
     author = models.ForeignKey(User, related_name="cheeps")
     content = models.CharField(max_length=140)
+
+    class Meta:
+        ordering = ('-created',)

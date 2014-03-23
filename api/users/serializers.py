@@ -10,4 +10,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         cheeps = serializers.RelatedField(many=True)
         is_following = serializers.RelatedField(many=True)
         has_followers = serializers.RelatedField(many=True)
-        fields = ('url', 'name', 'handle', 'thumbnail', 'cheeps', 'is_following', 'has_followers')
+        fields = ('name', 'handle', 'thumbnail')
+#        fields = ('url', 'name', 'handle', 'thumbnail', 'cheeps', 'is_following', 'has_followers')
