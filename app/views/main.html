@@ -13,7 +13,7 @@
     <ul class="media-list">
       <li class="media" ng-repeat="cheep in stream">
 	<a class="pull-left" href="#">
-          <img class="media-object" width="64px" height="64px" src="{{ cheep.author.thumbnail_url }}" alt="Generic placeholder image">
+          <img class="media-object" width="64px" height="64px" ng-src="{{ cheep.author.thumbnail_url }}" alt="Generic placeholder image">
 	</a>
 	<div class="media-body">
           <h4 class="media-heading">{{ cheep.author.name }} <small>@{{ cheep.author.handle }}</small></h4>
