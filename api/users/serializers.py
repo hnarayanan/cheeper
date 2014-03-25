@@ -9,6 +9,26 @@ from rest_framework_jwt.settings import api_settings
 from .models import User
 
 
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+
+    thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url',)
+        write_only_fields = ('thumbnail',)
+
+    # TOOD: Fix the following routine to create new users.
+    # def restore_object(self, attrs, instance=None):
+    #     """
+    #     Instantiate a new User object.
+    #     """
+    #     user = User(email=attrs['email'], name=attrs['name'], handle=attrs['handle'])
+    #     user.set_password(attrs['password'])
+    #     return user
+
+
+
 def jwt_payload_handler(user):
     return {
         'user_id': user.id,
@@ -57,22 +77,3 @@ class AuthSerializer(serializers.Serializer):
         else:
             msg = 'Must include "email" and "password"'
             raise serializers.ValidationError(msg)
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-
-    thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
-
-    class Meta:
-        model = User
-        fields = ('url', 'email', 'password', 'thumbnail', 'name', 'handle', 'thumbnail_url')
-        write_only_fields = ('email', 'password', 'thumbnail')
-
-    # TOOD: Fix the following routine to create new users.
-    # def restore_object(self, attrs, instance=None):
-    #     """
-    #     Instantiate a new User object.
-    #     """
-    #     user = User(email=attrs['email'], name=attrs['name'], handle=attrs['handle'])
-    #     user.set_password(attrs['password'])
-    #     return user
