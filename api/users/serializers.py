@@ -13,10 +13,13 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
     cheeps = serializers.HyperlinkedIdentityField(view_name='user-cheeps')
+    following = serializers.HyperlinkedIdentityField(view_name='user-following')
+    followers = serializers.HyperlinkedIdentityField(view_name='user-followers')
 
     class Meta:
         model = User
-        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url', 'cheeps')
+        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url',
+                  'cheeps', 'following', 'followers')
         write_only_fields = ('thumbnail',)
 
     # TOOD: Fix the following routine to create new users.
@@ -27,7 +30,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     #     user = User(email=attrs['email'], name=attrs['name'], handle=attrs['handle'])
     #     user.set_password(attrs['password'])
     #     return user
-
 
 
 def jwt_payload_handler(user):
