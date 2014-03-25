@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
+from rest_framework import permissions
 from rest_framework.response import Response
 
 from .models import User
@@ -20,6 +21,8 @@ class UserFollowingViewSet(viewsets.ViewSet):
     API endpoint that retrieves the list of users a given user is
     following.
     """
+    permission_classes = (permissions.IsAuthenticated,)
+
     def list(self, request, pk=None):
        author = get_object_or_404(User, pk=pk)
        queryset = author.is_following.all()
@@ -32,6 +35,8 @@ class UserFollowerViewSet(viewsets.ViewSet):
     API endpoint that retrieves the list of users a following a given
     user.
     """
+    permission_classes = (permissions.IsAuthenticated,)
+
     def list(self, request, pk=None):
        author = get_object_or_404(User, pk=pk)
        queryset = author.has_followers.all()
