@@ -15,8 +15,8 @@ router.register(r'cheeps', CheepViewSet)
 
 urlpatterns = patterns('',
   url(r'^', include(router.urls)),
-  url(r'^auth-session/', ObtainJSONWebToken.as_view(serializer_class=AuthSerializer)),
-  url(r'^auth-token/', 'rest_framework_jwt.views.obtain_jwt_token'),
+  url(r'^auth-session/', include('rest_framework.urls', namespace='rest_framework')),
+  url(r'^auth-token/', ObtainJSONWebToken.as_view(serializer_class=AuthSerializer)),
 )
 
 if settings.DEBUG:
