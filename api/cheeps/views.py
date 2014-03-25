@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework import permissions
 
 from .models import Cheep
 from .serializers import CheepSerializer
@@ -11,7 +12,8 @@ class CheepViewSet(viewsets.ModelViewSet):
     """
     queryset = Cheep.objects.all()
     serializer_class = CheepSerializer
-    permission_classes = (IsAuthorOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsAuthorOrReadOnly,)
 
     def pre_save(self, obj):
         obj.author = self.request.user
