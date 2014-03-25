@@ -12,10 +12,11 @@ from .models import User
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
+    cheeps = serializers.HyperlinkedIdentityField(view_name='user-cheeps')
 
     class Meta:
         model = User
-        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url',)
+        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url', 'cheeps')
         write_only_fields = ('thumbnail',)
 
     # TOOD: Fix the following routine to create new users.

@@ -15,7 +15,8 @@ router.register(r'cheeps', CheepViewSet)
 
 urlpatterns = patterns('',
   url(r'^', include(router.urls)),
-  url(r'^users/(?P<pk>[0-9]+)/cheeps/$', UserCheepViewSet.as_view({'get': 'list'})),
+  url(r'^users/(?P<pk>[0-9]+)/cheeps/$', UserCheepViewSet.as_view({'get': 'list'}), name='user-cheeps'),
+
   url(r'^auth-session/', include('rest_framework.urls', namespace='rest_framework')),
   url(r'^auth-token/', ObtainJSONWebToken.as_view(serializer_class=AuthSerializer)),
 )
