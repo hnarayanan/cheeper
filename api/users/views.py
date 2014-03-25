@@ -24,8 +24,8 @@ class UserFollowingViewSet(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
     def list(self, request, pk=None):
-       author = get_object_or_404(User, pk=pk)
-       queryset = author.is_following.all()
+       user = get_object_or_404(User, pk=pk)
+       queryset = user.is_following.all()
        serializer = UserSerializer(queryset, many=True)
        return Response(serializer.data)
 
@@ -38,7 +38,7 @@ class UserFollowerViewSet(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
     def list(self, request, pk=None):
-       author = get_object_or_404(User, pk=pk)
-       queryset = author.has_followers.all()
+       user = get_object_or_404(User, pk=pk)
+       queryset = user.has_followers.all()
        serializer = UserSerializer(queryset, many=True)
        return Response(serializer.data)

@@ -32,3 +32,22 @@ class UserCheepViewSet(viewsets.ViewSet):
        queryset = author.cheeps.all()
        serializer = CheepSerializer(queryset, many=True)
        return Response(serializer.data)
+
+
+class UserStreamViewSet(viewsets.ViewSet):
+    """
+    API endpoint that retrieves the list of all cheeps from a given
+    user and the users that they follow.
+    """
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsAuthorOrReadOnly,)
+
+    def list(self, request, pk=None):
+        user = get_object_or_404(User, pk=pk)
+        following = user.is_following.all()
+        #everyone = [user, following]
+        cheeps = []
+        for each in following:
+            cheeps.append(each.cheeps.all())
+        serializer = CheepSerializer(cheeps, many=True)
+        return Response(serializer.data)
