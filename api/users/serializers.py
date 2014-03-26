@@ -37,6 +37,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     #     return user
 
 
+class CheepUserSerializer(serializers.HyperlinkedModelSerializer):
+
+    thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'url', 'name', 'handle', 'thumbnail_url')
+
+
 def jwt_payload_handler(user):
     return {
         'user_id': user.id,
