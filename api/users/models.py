@@ -28,5 +28,15 @@ class User(AbstractEmailUser):
     def followers_count(self):
         return self.has_followers.count()
 
+    def stream(self):
+        my_cheeps = self.cheeps.all()
+        following = self.is_following.all()
+        stream_cheeps = my_cheeps
+
+        for person in following:
+            stream_cheeps = stream_cheeps | person.cheeps.all()
+
+        return stream_cheeps.order_by('-created')
+
     def __unicode__(self):
         return '%s' % self.name

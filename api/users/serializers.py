@@ -18,12 +18,13 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     following_url = serializers.HyperlinkedIdentityField(view_name='user-following')
     followers_count = serializers.CharField(source='followers_count', read_only=True)
     followers_url = serializers.HyperlinkedIdentityField(view_name='user-followers')
+    stream_url = serializers.HyperlinkedIdentityField(view_name='user-stream')
 
     class Meta:
         model = User
         fields = ('id', 'url', 'name', 'handle', 'thumbnail', 'thumbnail_url',
                   'cheeps_count', 'cheeps_url', 'following_count', 'following_url',
-                  'followers_count', 'followers_url')
+                  'followers_count', 'followers_url', 'stream_url')
         write_only_fields = ('thumbnail',)
 
     # TOOD: Fix the following routine to create new users.

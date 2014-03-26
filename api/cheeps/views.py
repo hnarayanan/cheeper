@@ -29,8 +29,8 @@ class UserCheepViewSet(viewsets.ViewSet):
     """
     def list(self, request, pk=None):
        author = get_object_or_404(User, pk=pk)
-       queryset = author.cheeps.all()
-       serializer = CheepSerializer(queryset, many=True)
+       cheeps = author.cheeps.all()
+       serializer = CheepSerializer(cheeps, many=True)
        return Response(serializer.data)
 
 
@@ -44,10 +44,6 @@ class UserStreamViewSet(viewsets.ViewSet):
 
     def list(self, request, pk=None):
         user = get_object_or_404(User, pk=pk)
-        following = user.is_following.all()
-        #everyone = [user, following]
-        cheeps = []
-        for each in following:
-            cheeps.append(each.cheeps.all())
+        cheeps = user.stream()
         serializer = CheepSerializer(cheeps, many=True)
         return Response(serializer.data)
