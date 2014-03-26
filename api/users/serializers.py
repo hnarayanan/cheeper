@@ -37,7 +37,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     #     return user
 
 
-class CheepUserSerializer(serializers.HyperlinkedModelSerializer):
+class CheepAuthorSerializer(serializers.HyperlinkedModelSerializer):
 
     thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
 

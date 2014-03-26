@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from users.serializers import CheepUserSerializer
+from users.serializers import CheepAuthorSerializer
 from .models import Cheep
 
 
 class CheepSerializer(serializers.HyperlinkedModelSerializer):
 
-    author = CheepUserSerializer(read_only=True)
+    author = CheepAuthorSerializer(read_only=True)
 
     class Meta:
         model = Cheep
