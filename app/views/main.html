@@ -12,11 +12,11 @@
   <div class="col-md-9 col-lg-8">
     <ul class="media-list">
       <li class="media" ng-repeat="cheep in stream">
-	<a class="pull-left" href="#">
+	<a class="pull-left" ng-href="/#/users/{{ cheep.author.id }}">
           <img class="media-object" width="64px" height="64px" ng-src="{{ cheep.author.thumbnail_url }}" alt="Generic placeholder image">
 	</a>
 	<div class="media-body">
-          <h4 class="media-heading">{{ cheep.author.name }} <small>@{{ cheep.author.handle }}</small></h4>
+          <h4 class="media-heading"><a ng-href="/#/users/{{ cheep.author.id }}">{{ cheep.author.name }}</a> <small>@{{ cheep.author.handle }} &mdash; {{ cheep.created | date:'short'}}</small></h4>
           <p>{{ cheep.content }}</p>
 	</div>
       </li>
