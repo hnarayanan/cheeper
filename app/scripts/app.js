@@ -12,7 +12,7 @@ angular.module('cheeperApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/users/:userId', {
+      .when('/users/:userId/', {
         templateUrl: 'views/user-detail.html',
         controller: 'UserDetailCtrl'
       })

@@ -1,12 +1,31 @@
 <div class="row">
 
   <div class="col-md-3 col-lg-4">
-    <form role="form">
-      <div class="form-group">
-	<textarea class="form-control" rows="4" placeholder="Cheep cheep cheep?"></textarea>
-      </div>
-      <button type="submit" class="btn btn-success">Cheep!</button>
-    </form>
+  </div>
+
+  <div class="col-md-9 col-lg-8">
+    <h1>{{ user.name }} <small>@{{ user.handle }}</small></h1>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-3 col-lg-4">
+    <ul class="list-group">
+      <li class="list-group-item">
+	<span class="badge">{{ user.cheeps_count }}</span>
+	Cheeps
+      </li>
+      <li class="list-group-item">
+	<span class="badge">{{ user.following_count }}</span>
+	Following
+      </li>
+      <li class="list-group-item">
+	<span class="badge">{{ user.followers_count }}</span>
+	Followers
+      </li>
+    </ul>
   </div>
 
   <div class="col-md-9 col-lg-8">
