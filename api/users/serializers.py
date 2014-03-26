@@ -12,14 +12,18 @@ from .models import User
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     thumbnail_url = serializers.CharField(source='thumbnail_url', read_only=True)
-    cheeps = serializers.HyperlinkedIdentityField(view_name='user-cheeps')
-    following = serializers.HyperlinkedIdentityField(view_name='user-following')
-    followers = serializers.HyperlinkedIdentityField(view_name='user-followers')
+    cheeps_count = serializers.CharField(source='cheeps_count', read_only=True)
+    cheeps_url = serializers.HyperlinkedIdentityField(view_name='user-cheeps')
+    following_count = serializers.CharField(source='following_count', read_only=True)
+    following_url = serializers.HyperlinkedIdentityField(view_name='user-following')
+    followers_count = serializers.CharField(source='followers_count', read_only=True)
+    followers_url = serializers.HyperlinkedIdentityField(view_name='user-followers')
 
     class Meta:
         model = User
-        fields = ('url', 'name', 'handle', 'thumbnail', 'thumbnail_url',
-                  'cheeps', 'following', 'followers')
+        fields = ('id', 'url', 'name', 'handle', 'thumbnail', 'thumbnail_url',
+                  'cheeps_count', 'cheeps_url', 'following_count', 'following_url',
+                  'followers_count', 'followers_url')
         write_only_fields = ('thumbnail',)
 
     # TOOD: Fix the following routine to create new users.

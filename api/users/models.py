@@ -19,5 +19,14 @@ class User(AbstractEmailUser):
             return 'http://localhost:8000' + self.thumbnail.url
         return ''
 
+    def cheeps_count(self):
+        return self.cheeps.count()
+
+    def following_count(self):
+        return self.is_following.count()
+
+    def followers_count(self):
+        return self.has_followers.count()
+
     def __unicode__(self):
         return '%s' % self.name
