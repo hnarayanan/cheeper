@@ -10,4 +10,4 @@ class CheepSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Cheep
-        fields = ('url', 'created', 'modified', 'author', 'content')
+        fields = ('id', 'url', 'created', 'modified', 'author', 'content')

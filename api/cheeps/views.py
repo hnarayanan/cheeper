@@ -36,8 +36,9 @@ class UserCheepViewSet(viewsets.ViewSet):
 
 class UserStreamViewSet(viewsets.ViewSet):
     """
-    API endpoint that retrieves the list of all cheeps from a given
-    user and the users that they follow.
+    API endpoint that retrieves a user's stream. That's a list of all
+    the cheeps that they've authored along with those of the users
+    that they follow.
     """
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsAuthorOrReadOnly,)

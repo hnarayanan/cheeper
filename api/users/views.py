@@ -18,27 +18,27 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class UserFollowingViewSet(viewsets.ViewSet):
     """
-    API endpoint that retrieves the list of users a given user is
+    API endpoint that retrieves the list of users that a given user is
     following.
     """
     permission_classes = (permissions.IsAuthenticated,)
 
     def list(self, request, pk=None):
        user = get_object_or_404(User, pk=pk)
-       queryset = user.is_following.all()
-       serializer = UserSerializer(queryset, many=True)
+       following = user.is_following.all()
+       serializer = UserSerializer(following, many=True)
        return Response(serializer.data)
 
 
 class UserFollowerViewSet(viewsets.ViewSet):
     """
-    API endpoint that retrieves the list of users a following a given
-    user.
+    API endpoint that retrieves the list of users a that are following
+    a given user.
     """
     permission_classes = (permissions.IsAuthenticated,)
 
     def list(self, request, pk=None):
        user = get_object_or_404(User, pk=pk)
-       queryset = user.has_followers.all()
-       serializer = UserSerializer(queryset, many=True)
+       followers = user.has_followers.all()
+       serializer = UserSerializer(followers, many=True)
        return Response(serializer.data)
