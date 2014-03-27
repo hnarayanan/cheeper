@@ -1,12 +1,8 @@
-<div class="row">
 
-  <div class="col-md-3 col-lg-4">
-  </div>
-
-  <div class="col-md-9 col-lg-8">
-    <h1>{{ user.name }} <small>@{{ user.handle }}</small></h1>
-  </div>
-
+<div class="page-header text-center">
+  <h1>{{ user.name }} <small>@{{ user.handle }}</small></h1>
+  <p>This is {{ user.name }}&rsquo;s wittily written description &hellip;</p>
+  <button type="button" class="btn btn-lg btn-success">Follow!</button>
 </div>
 
 <div class="row">
@@ -14,16 +10,16 @@
   <div class="col-md-3 col-lg-4">
     <ul class="list-group">
       <li class="list-group-item">
-	<span class="badge">{{ user.cheeps_count }}</span>
-	Cheeps
+        <span class="badge">{{ user.cheeps_count }}</span>
+        Cheeps
       </li>
       <li class="list-group-item">
-	<span class="badge">{{ user.following_count }}</span>
-	Following
+        <span class="badge">{{ user.following_count }}</span>
+        Following
       </li>
       <li class="list-group-item">
-	<span class="badge">{{ user.followers_count }}</span>
-	Followers
+        <span class="badge">{{ user.followers_count }}</span>
+        Followers
       </li>
     </ul>
   </div>
@@ -31,13 +27,13 @@
   <div class="col-md-9 col-lg-8">
     <ul class="media-list">
       <li class="media" ng-repeat="cheep in stream">
-	<a class="pull-left" href="#">
+        <a class="pull-left" href="#">
           <img class="media-object" width="64px" height="64px" ng-src="{{ cheep.author.thumbnail_url }}" alt="Generic placeholder image">
-	</a>
-	<div class="media-body">
+        </a>
+        <div class="media-body">
           <h4 class="media-heading">{{ cheep.author.name }} <small>@{{ cheep.author.handle }}</small></h4>
           <p>{{ cheep.content }}</p>
-	</div>
+        </div>
       </li>
     </ul>
   </div>
