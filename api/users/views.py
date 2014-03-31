@@ -24,13 +24,27 @@ class UserFollowingViewSet(viewsets.ViewSet):
     API endpoint that retrieves the list of users that a given user is
     following.
     """
-    permission_classes = (permissions.IsAuthenticated,)
+    # TODO: Fix permissions for the following endpoints.
 
     def list(self, request, pk=None):
-       user = get_object_or_404(User, pk=pk)
-       following = user.is_following.all()
-       serializer = UserSerializer(following, many=True)
-       return Response(serializer.data)
+        user = get_object_or_404(User, pk=pk)
+        following = user.is_following.all()
+        serializer = UserSerializer(following, many=True)
+        return Response(serializer.data)
+
+    def create(self, request, pk=None):
+        user = get_object_or_404(User, pk=pk)
+        followed = request.POST.get('user')
+        followed_user = get_object_or_404(User, pk=followed)
+        if followed_user not in user.is_following.all():
+            user.is_following.add(followed_user)
+
+        following = user.is_following.all()
+        serializer = UserSerializer(following, many=True)
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        pass
 
 
 class UserFollowerViewSet(viewsets.ViewSet):
