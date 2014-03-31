@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from .models import User
 from .serializers import UserSerializer
+from .permissions import IsUserOrReadOnly
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -14,6 +15,8 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsUserOrReadOnly,)
 
 
 class UserFollowingViewSet(viewsets.ViewSet):
