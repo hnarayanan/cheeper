@@ -16,7 +16,7 @@ urlpatterns = patterns('',
   url(r'^', include(router.urls)),
   url(r'^users/(?P<pk>[0-9]+)/cheeps/$', UserCheepViewSet.as_view({'get': 'list'}), name='user-cheeps'),
   url(r'^users/(?P<pk>[0-9]+)/following/$', UserFollowingViewSet.as_view({'get': 'list', 'post': 'create'}), name='user-following'),
-#  url(r'^users/(?P<pk>[0-9]+)/following/(?P<followed-pk>[0-9]+)/$', UserFollowingViewSet.as_view({'post': 'create', 'delete': 'destroy'}), name='user-following-create-destroy'),
+  url(r'^users/(?P<pk>[0-9]+)/following/(?P<followed>[0-9]+)/$', UserFollowingViewSet.as_view({'delete': 'destroy'}), name='user-following-destroy'),
   url(r'^users/(?P<pk>[0-9]+)/followers/$', UserFollowerViewSet.as_view({'get': 'list'}), name='user-followers'),
   url(r'^users/(?P<pk>[0-9]+)/stream/$', UserStreamViewSet.as_view({'get': 'list'}), name='user-stream'),
 

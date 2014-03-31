@@ -43,8 +43,14 @@ class UserFollowingViewSet(viewsets.ViewSet):
         serializer = UserSerializer(following, many=True)
         return Response(serializer.data)
 
-    def destroy(self, request, pk=None):
-        pass
+    def destroy(self, request, pk=None, followed=None):
+        user = get_object_or_404(User, pk=pk)
+        followed_user = get_object_or_404(User, pk=followed)
+        if followed_user in user.is_following.all():
+            user.is_following.remove(followed_user)
+        following = user.is_following.all()
+        serializer = UserSerializer(following, many=True)
+        return Response(serializer.data)
 
 
 class UserFollowerViewSet(viewsets.ViewSet):
