@@ -23,5 +23,6 @@ angular.module('cheeperApp')
         },
         "content": $scope.cheep.content
        });
+     $scope.cheep.content = '';
     };
 });
