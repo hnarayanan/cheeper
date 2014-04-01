@@ -20,3 +20,13 @@ angular.module('cheeperApp', [
         redirectTo: '/'
       });
   });
+  // .run(function($cookieStore, $rootScope, $http) {
+  //   if ($cookieStore.get('JWT')) {
+  // 	console.log($cookieStore.get('JWT'));
+  // 	$http.defaults.headers.common['Authorization'] = 'JWT ' + $cookieStore.get('JWT');
+  //   } else {
+  //   // TODO: Do login stuff
+  //   }
+  // });
+
+
