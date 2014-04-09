@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 
   url(r'^auth-session/', include('rest_framework.urls', namespace='rest_framework')),
   url(r'^auth-token/', ObtainJSONWebToken.as_view(serializer_class=AuthSerializer)),
+  url(r'^docs/', include('rest_framework_swagger.urls')),
 )
 
 if settings.DEBUG:
